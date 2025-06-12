@@ -125,3 +125,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.glass-shadow {
+  @apply shadow-[0_0_2px_rgba(0,0,0,0.10),0_1px_8px_rgba(0,0,0,0.12)] inset-shadow-[3px_3px_0.5px_-3.5px_rgba(255,255,255,0.75),-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.80),1px_1px_1px_-0.5px_rgba(255,255,255,0.75),-1px_-1px_1px_-0.5px_rgba(255,255,255,0.75),0_0_1px_1px_rgba(255,255,255,0.15),0_0_1px_1px_#999,0_0_16px_#F2F2F2];
+}
+
+.glass-frosted {
+  backdrop-filter: url("#container-glass");
+}

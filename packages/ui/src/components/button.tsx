@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@workspace/ui/lib/utils";
+import { GlassFilter } from "@workspace/ui/components/glass-filter";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-[color,box-shadow] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -49,15 +50,21 @@ function Button({
   const Comp = asChild ? Slot : "button";
 
   return (
-    <Comp
-      data-slot="button"
-      className={cn("relative", buttonVariants({ variant, size, className }))}
-      {...props}
-    >
-      <div className="w-full h-full absolute top-0 left-0 blur-md z-0" />
-      <div className="w-full h-full absolute top-0 left-0 bg-[#333]/[.3] hover:bg-[#333]/[.4] transition-all rounded-full z-0 shadow-[0_0_2px_rgba(0,0,0,0.10),0_1px_8px_rgba(0,0,0,0.12)] inset-shadow-[3px_3px_0.5px_-3.5px_rgba(255,255,255,0.75),-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.80),1px_1px_1px_-0.5px_rgba(255,255,255,0.75),-1px_-1px_1px_-0.5px_rgba(255,255,255,0.75),0_0_1px_1px_rgba(255,255,255,0.15),0_0_1px_1px_#999,0_0_16px_#F2F2F2]" />
-      <div className="z-10 pointer-events-none">{children}</div>
-    </Comp>
+    <>
+      <Comp
+        data-slot="button"
+        className={cn(
+          "relative",
+          buttonVariants({ variant, size, className })
+        )}
+        {...props}
+      >
+        <div className="w-full h-full absolute top-0 left-0 glass-frosted isolate rounded-full overflow-hidden -z-1" />
+        <div className="w-full h-full absolute top-0 left-0 bg-[#333]/[.3] hover:bg-[#333]/[.4] transition-all rounded-full z-0 glass-shadow" />
+        <div className="z-10 pointer-events-none">{children}</div>
+        <GlassFilter />
+      </Comp>
+    </>
   );
 }
 
